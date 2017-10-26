@@ -82,23 +82,33 @@ void * initializeKernelBinary()
 
 int main()
 {	
-	ncPrint("[Kernel Main]");
-	ncNewline();
-	ncPrint("  Sample code module at 0x");
-	ncPrintHex((uint64_t)sampleCodeModuleAddress);
-	ncNewline();
-	ncPrint("  Calling the sample code module returned: ");
-	ncPrintHex(((EntryPoint)sampleCodeModuleAddress)());
-	ncNewline();
-	ncNewline();
-
-	ncPrint("  Sample data module at 0x");
-	ncPrintHex((uint64_t)sampleDataModuleAddress);
-	ncNewline();
-	ncPrint("  Sample data module contents: ");
-	ncPrint((char*)sampleDataModuleAddress);
-	ncNewline();
-
 	ncPrint("[Finished]");
+	enterTextMode();
+	ncPrint("EXITED CONSOLE MODE");
 	return 0;
 }
+
+static uint8_t * const KEYBOARD_STATUS = (uint8_t*)0x64;
+static uint8_t * const KEYBOARD_COMMAND = (uint8_t*)0x64;
+static uint8_t * const KEYBOARD_OUTPUT = (uint8_t*)0x60;
+static uint8_t * const KEYBOARD_DATA = (uint8_t*)0x60;
+
+
+void enterTextMode(){
+    int _exit = 0;
+    char input;
+    while (*KEYBOARD_STATUS % 2 != 1){
+ //       input = 0;
+ //       if (*KEYBOARD_STATUS % 2 == 1){
+ //           input = *KEYBOARD_DATA;
+ //       }
+  //      if (input == 0x01){
+  //         ncPrintChar('a');
+  //          _exit = 1;
+   //     }
+//	if (input != 0){
+  //         ncPrintChar(input);
+  //      }
+    }
+}
+
