@@ -20,7 +20,7 @@ void ncPrintChar(char character)
 {
 	*currentVideo = character;
 	currentVideo += 2;
-	if (currentVideo > video + 300)currentVideo = video;
+	if (currentVideo > video + 3998)currentVideo = video;
 }
 
 void ncNewline()

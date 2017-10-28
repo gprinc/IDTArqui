@@ -80,35 +80,40 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
-int main()
-{	
-	ncPrint("[Finished]");
-	enterTextMode();
-	ncPrint("EXITED CONSOLE MODE");
-	return 0;
-}
-
 static uint8_t * const KEYBOARD_STATUS = (uint8_t*)0x64;
 static uint8_t * const KEYBOARD_COMMAND = (uint8_t*)0x64;
 static uint8_t * const KEYBOARD_OUTPUT = (uint8_t*)0x60;
 static uint8_t * const KEYBOARD_DATA = (uint8_t*)0x60;
 
+int main()
+{	
+	ncPrint("[Finished]");
+	// char input = *KEYBOARD_STATUS;
+	// ncPrintChar(input + '0');
+	//ncPrintChar(*KEYBOARD_STATUS);
+	//while(1)
+	//ncPrintChar('a');
+	enterTextMode();
+	ncPrint("EXITED CONSOLE MODE");
+	return 0;
+}
+
+
+
 
 void enterTextMode(){
     int _exit = 0;
+    char keyboardStatus;
     char input;
-    while (*KEYBOARD_STATUS % 2 != 1){
- //       input = 0;
- //       if (*KEYBOARD_STATUS % 2 == 1){
- //           input = *KEYBOARD_DATA;
- //       }
-  //      if (input == 0x01){
-  //         ncPrintChar('a');
-  //          _exit = 1;
-   //     }
-//	if (input != 0){
-  //         ncPrintChar(input);
-  //      }
+    while (!_exit){
+    	input = 0;
+    	if ((keyboardStatus = *KEYBOARD_STATUS) % 2 == 1){
+    		input = *KEYBOARD_DATA;
+    	}
+       if (input == 0x01){
+          ncPrintChar('Exiting console.');
+           _exit = 1;
+       }
     }
 }
 
