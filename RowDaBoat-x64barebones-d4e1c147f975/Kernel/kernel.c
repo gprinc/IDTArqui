@@ -80,10 +80,10 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
-static uint8_t * const KEYBOARD_STATUS = (uint8_t*)0x64;
-static uint8_t * const KEYBOARD_COMMAND = (uint8_t*)0x64;
-static uint8_t * const KEYBOARD_OUTPUT = (uint8_t*)0x60;
-static uint8_t * const KEYBOARD_DATA = (uint8_t*)0x60;
+// static uint8_t * const KEYBOARD_STATUS = (uint8_t*)0x64;
+// static uint8_t * const KEYBOARD_COMMAND = (uint8_t*)0x64;
+// static uint8_t * const KEYBOARD_OUTPUT = (uint8_t*)0x60;
+// static uint8_t * const KEYBOARD_DATA = (uint8_t*)0x60;
 
 int main()
 {	
@@ -93,35 +93,32 @@ int main()
 	//ncPrintChar(*KEYBOARD_STATUS);
 	//while(1)
 	//ncPrintChar('a');
-	enterTextMode();
+	//enterTextMode();
 	ncPrint("EXITED CONSOLE MODE");
 	return 0;
 }
 
 
-int getKeyboardStatus();
-int getKeyboardData();
-static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\b',
-								'\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', ']', '\\',
-								'\0', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', '\'', 13,
-								'\0', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '\0', '\0', '\0', ' '};
+// int getKeyboardStatus();
+// int getKeyboardData();
 
-void enterTextMode(){
-    int _exit = 0;
-    char keyboardStatus;
-    char input;
-    while (!_exit){
-    	input = 0;
-    	if (getKeyboardStatus() == 1){
-    		input = getKeyboardData();
-    	}
-    	if (input >= 0 && input < 57 && input != '\0'){
-    		ncPrintChar(keyCodes[input]);
-    	}
-       if (input == 0x01){
-          ncPrintChar('Exiting console.');
-           _exit = 1;
-       }
-    }
-}
+
+// void enterTextMode(){
+//     int _exit = 0;
+//     char keyboardStatus;
+//     char input;
+//     while (!_exit){
+//     	input = 0;
+//     	if (getKeyboardStatus() == 1){
+//     		input = getKeyboardData();
+//     	}
+//     	if (input >= 0 && input < 57 && input != '\0'){
+//     		ncPrintChar(keyCodes[input]);
+//     	}
+//        if (input == 0x01){
+//           ncPrintChar('Exiting console.');
+//            _exit = 1;
+//        }
+//     }
+// }
 
