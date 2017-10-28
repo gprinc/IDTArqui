@@ -1,0 +1,1 @@
+void int_syscall(int id);

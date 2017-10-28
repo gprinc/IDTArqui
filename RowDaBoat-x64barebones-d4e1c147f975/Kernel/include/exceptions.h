@@ -1,0 +1,1 @@
+void exc_access_denied();

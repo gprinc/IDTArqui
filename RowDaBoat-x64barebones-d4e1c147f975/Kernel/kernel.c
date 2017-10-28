@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <lib.h>
+#include <idtLoader.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
 
@@ -74,6 +75,9 @@ void * initializeKernelBinary()
 	ncPrintHex((uint64_t)&bss);
 	ncNewline();
 
+	initIDT();
+	ncNewline();
+
 	ncPrint("[Done]");
 	ncNewline();
 	ncNewline();
@@ -85,6 +89,7 @@ void * initializeKernelBinary()
 // static uint8_t * const KEYBOARD_OUTPUT = (uint8_t*)0x60;
 // static uint8_t * const KEYBOARD_DATA = (uint8_t*)0x60;
 
+void write_a();
 int main()
 {	
 	ncPrint("[Finished]");
@@ -94,6 +99,7 @@ int main()
 	//while(1)
 	//ncPrintChar('a');
 	//enterTextMode();
+	write_a();
 	ncPrint("EXITED CONSOLE MODE");
 	return 0;
 }

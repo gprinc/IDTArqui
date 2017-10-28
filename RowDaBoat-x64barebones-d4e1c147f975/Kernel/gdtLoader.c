@@ -2,6 +2,6 @@
 * GDT.c
 */
 
-initGDT(){
+void initGDT(){
 	
 }

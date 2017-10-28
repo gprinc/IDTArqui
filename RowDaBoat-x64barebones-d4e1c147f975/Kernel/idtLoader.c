@@ -1,6 +1,10 @@
 /*
 * IDT.c
 */
+#include <stdint.h>
+#include <defs.h>
+#include <interruptions.h>
+#include <exceptions.h>
 #pragma pack(push)
 #pragma pack (1)
 

@@ -1,4 +1,3 @@
-#include <syscalls.h>
 
 //Syscalls interrupt handler
 void int_syscall(int id){
@@ -12,7 +11,7 @@ void int_syscall(int id){
 			break;
 		//WriteChar (to screen)
 		case 2:
-			writeChar()
+			writeChar();
 			break;
 	}
 }
