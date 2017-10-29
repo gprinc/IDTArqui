@@ -1,1 +1,1 @@
-void int_syscall(int id);
+void handle_syscall();

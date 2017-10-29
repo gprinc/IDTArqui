@@ -7,9 +7,9 @@ get_register_eax:
 	ret
 
 get_register_ebx:
-	mov ebx, eax
+	mov eax, ebx
 	ret
 
 get_register_ecx:
-	mov ebx, ecx
+	mov eax, ecx
 	ret

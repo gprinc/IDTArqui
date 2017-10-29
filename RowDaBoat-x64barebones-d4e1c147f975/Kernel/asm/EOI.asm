@@ -1,6 +1,14 @@
-GLOBAL endOfInterrupt
+EXTERN handle_syscall
+
 section .text
-endOfInterrupt:
+
+int_syscall:
+	pushState
+
+	call handle_syscall
+
 	mov al, 20h
 	out 20h, al
+
+	popState
 	iretq

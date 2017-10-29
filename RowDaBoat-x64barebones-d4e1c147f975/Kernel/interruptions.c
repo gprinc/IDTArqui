@@ -1,8 +1,11 @@
+#include <syscalls.h>
 
-void endOfInterrupt();
+//Defined in asm/intelUtils.asm
+int get_register_eax();
 
 //Syscalls interrupt handler
-void int_syscall(int id){
+void handle_syscall(){
+	int id = get_register_eax();
 	switch (id){
 		//Exit
 		case 0:
@@ -16,6 +19,9 @@ void int_syscall(int id){
 			writeChar();
 			break;
 	}
-	endOfInterrupt();
+	return;
+	// asm("mov al, 20h
+	// out 20h, al
+	// iretq");
 }
 

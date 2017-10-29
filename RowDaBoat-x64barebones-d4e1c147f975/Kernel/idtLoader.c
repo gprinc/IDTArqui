@@ -22,16 +22,6 @@ typedef struct {
 
 INT_DESCR * idt = (INT_DESCR *) 0;
 
-void initIDT(){
-
-	//Access denied exception (cooler name for SegFault)
-	setup_IDT_entry(0x0, (uint64_t)&exc_access_denied);
-
-	//Syscalls interruption
-	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
-
-}
-
 void setup_IDT_entry (int index, uint64_t offset) {
 	idt[index].offset_l = offset & 0xFFFF;
 	idt[index].selector = 0x08;
@@ -40,4 +30,24 @@ void setup_IDT_entry (int index, uint64_t offset) {
 	idt[index].offset_m = (offset >> 16) & 0xFFFF;
 	idt[index].offset_h = (offset >> 32) & 0xFFFFFFFF;
 	idt[index].other_cero = 0;
+}
+
+//Defined in interruptions.asm
+void int_syscall();
+void _sti();
+void picMasterMask();
+void picSlaveMask();
+
+void initIDT(){
+
+	//Access denied exception (cooler name for SegFault)
+	setup_IDT_entry(0x0, (uint64_t)&exc_access_denied);
+
+	//Syscalls interruption
+	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
+
+	picMasterMask(0xFE);
+	picSlaveMask(0xFF);
+
+	_sti();
 }

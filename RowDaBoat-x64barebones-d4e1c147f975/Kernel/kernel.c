@@ -84,30 +84,14 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
-// static uint8_t * const KEYBOARD_STATUS = (uint8_t*)0x64;
-// static uint8_t * const KEYBOARD_COMMAND = (uint8_t*)0x64;
-// static uint8_t * const KEYBOARD_OUTPUT = (uint8_t*)0x60;
-// static uint8_t * const KEYBOARD_DATA = (uint8_t*)0x60;
-
 void write_a();
 int main()
 {	
 	ncPrint("[Finished]");
-	// char input = *KEYBOARD_STATUS;
-	// ncPrintChar(input + '0');
-	//ncPrintChar(*KEYBOARD_STATUS);
-	//while(1)
-	//ncPrintChar('a');
-	//enterTextMode();
 	write_a();
-	ncPrint("EXITED CONSOLE MODE");
+	ncPrint("SUCCESS!");
 	return 0;
 }
-
-
-// int getKeyboardStatus();
-// int getKeyboardData();
-
 
 // void enterTextMode(){
 //     int _exit = 0;
