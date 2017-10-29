@@ -28,9 +28,6 @@ void initIDT(){
 	setup_IDT_entry(0x0, (uint64_t)&exc_access_denied);
 
 	//Syscalls interruption
-	setup_IDT_entry(0x20 + 0x80, (uint64_t)&int_syscall);
-
-	//Syscalls interruption
 	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
 
 }

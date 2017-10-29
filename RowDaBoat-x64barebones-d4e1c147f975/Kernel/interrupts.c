@@ -1,4 +1,6 @@
 
+void endOfInterrupt();
+
 //Syscalls interrupt handler
 void int_syscall(int id){
 	switch (id){
@@ -14,5 +16,6 @@ void int_syscall(int id){
 			writeChar();
 			break;
 	}
+	endOfInterrupt();
 }
 

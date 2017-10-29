@@ -29,4 +29,5 @@ int readChar(){
 void writeChar(){
 	char input = get_register_ebx();
 	ncPrintChar(input);
+	ncPrintChar('a');
 }
