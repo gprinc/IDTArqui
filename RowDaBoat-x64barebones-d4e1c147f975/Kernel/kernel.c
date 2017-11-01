@@ -86,7 +86,7 @@ void * initializeKernelBinary()
 
 void write_a();
 int main()
-{	
+{
 	ncPrint("[Finished]");
 	write_a();
 	ncPrint("SUCCESS!");
@@ -111,4 +111,3 @@ int main()
 //        }
 //     }
 // }
-
