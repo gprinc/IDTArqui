@@ -86,13 +86,15 @@ void * initializeKernelBinary()
 }
 
 void write_a();
-int main()
-{	
+int main() {
+
 	ncPrint("[Finished]");
 	//write_a();
 	ncPrint("SUCCESS!");
+
 	return 0;
 }
+// ncPrint("Veamos si llega a los 80 caracteres y ver que pasa. Solo me quedan 30 caracteres.");
 
 // void enterTextMode(){
 //     int _exit = 0;
@@ -112,4 +114,3 @@ int main()
 //        }
 //     }
 // }
-

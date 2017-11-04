@@ -24,7 +24,8 @@ void ncPrintChar(char character)
 		*currentVideo = character;
 		currentVideo += 2;
 	}
-	if (currentVideo > video + 3998)currentVideo = video;
+	if (currentVideo > video + 3998)
+		moveCharsUp();
 }
 
 void ncNewline()
@@ -97,4 +98,20 @@ static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base)
 	}
 
 	return digits;
+}
+
+void moveCharsUp(){
+  currentVideo = video;
+  uint8_t * auxVideo = video + width*2;
+  int i;
+  for(i = 0; i < width*(height-1); i++){
+    *currentVideo=*auxVideo;
+    currentVideo+=2;
+    auxVideo+=2;
+  }
+	int j;
+  for(j=0; j < 2 * width; j++)
+      currentVideo[j++]= ' ';
+			currentVideo[j]= 0;
+
 }
