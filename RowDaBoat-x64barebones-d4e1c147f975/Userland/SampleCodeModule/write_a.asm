@@ -8,4 +8,4 @@ write_a:
 	ret
 
 section .data
-a db "a a a", 0
+a db "a a", 0

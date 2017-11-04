@@ -9,3 +9,11 @@ static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8',
 void handle_keyboard_interruption(int input){
 	buffer[bufferLength++] = keyCodes[input];
 }
+
+char getChar(){
+	return buffer[(bufferLength--)-1];
+}
+
+void resetBuffer(){
+	
+}

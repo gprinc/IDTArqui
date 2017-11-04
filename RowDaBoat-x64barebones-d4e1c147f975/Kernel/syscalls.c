@@ -24,5 +24,6 @@ void exit(){
 // }
 
 void write(char * string){
+	//ncPrint("Hello darkess my old friendo :^)");
 	ncPrint(string);
 }

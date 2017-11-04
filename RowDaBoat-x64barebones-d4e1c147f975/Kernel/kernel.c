@@ -89,7 +89,8 @@ void write_a();
 int main() {
 
 	ncPrint("[Finished]");
-	//write_a();
+	write_a();
+	//printf("Hello");
 	ncPrint("SUCCESS!");
 
 	return 0;

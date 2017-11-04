@@ -3,8 +3,7 @@
 //void print(const char * string);
 
 int main() {
-	print("Holaa!\n");
-	print("Holaa!\n");
-	write_a();
+	//printf("Holaa!\n");
+	//write_a();
 	return 0;
 }
