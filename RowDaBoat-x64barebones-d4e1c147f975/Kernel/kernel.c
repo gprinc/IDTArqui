@@ -4,6 +4,7 @@
 #include <idtLoader.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
+#include <stdio.h>
 
 extern uint8_t text;
 extern uint8_t rodata;
@@ -88,7 +89,7 @@ void write_a();
 int main()
 {	
 	ncPrint("[Finished]");
-	write_a();
+	//write_a();
 	ncPrint("SUCCESS!");
 	return 0;
 }

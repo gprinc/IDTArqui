@@ -1,7 +1,8 @@
-GLOBAL write_a
+GLOBAL print
 
 section .text
-write_a:
+print:
+	mov rax, rdi
 	mov rdi, 0x2
 	mov rsi, a
 	int 80h

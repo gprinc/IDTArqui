@@ -5,6 +5,7 @@
 #include <defs.h>
 #include <interruptions.h>
 #include <exceptions.h>
+//#include <keyboard.h>
 #pragma pack(push)
 #pragma pack (1)
 
@@ -43,8 +44,14 @@ void initIDT(){
 	//Access denied exception (cooler name for SegFault)
 	setup_IDT_entry(0x0, (uint64_t)&exc_access_denied);
 
+	//Timer tick exception
+	//setup_IDT_entry(0x20, (uint64_t)&handle_syscall);
+
+	//Keyboard interruption
+	//setup_IDT_entry(0x21, (uint64_t)&handle_keyboard_interruption);
+
 	//Syscalls interruption
-	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
+	setup_IDT_entry(0x80, (uint64_t)&handle_syscall);
 
 	picMasterMask(0xFE);
 	picSlaveMask(0xFF);

@@ -4,7 +4,7 @@ SOURCES=$(wildcard *.c)
 all: $(MP)
 
 $(MP): $(SOURCES)
-	gcc-7 $(SOURCES) -o $(MP) -L~/ITBA/Arqui/TPE/argp.h -lexif
+	gcc $(SOURCES) -o $(MP)
 
 clean:
 	rm -rf $(MP)
