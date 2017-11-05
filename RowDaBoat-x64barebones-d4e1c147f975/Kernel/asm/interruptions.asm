@@ -1,4 +1,6 @@
 EXTERN handle_syscall
+EXTERN handle_keyboard_input
+GLOBAL int_keyboard
 GLOBAL int_syscall
 GLOBAL _sti
 GLOBAL picMasterMask
@@ -7,8 +9,21 @@ GLOBAL picSlaveMask
 section .text
 
 int_syscall:
+
+	call handle_syscall
+
+	iretq
+
+
+int_keyboard:
 	pushState
 
+	mov rax, 0x0
+	mov rdi, 0x0
+	in al, 60h
+	movzx rdi, al
+	mov rdi, 0x2
+	mov rsi, a
 	call handle_syscall
 
 	mov al, 20h
@@ -72,3 +87,6 @@ picSlaveMask:
 	pop rbx
 	pop rax
 %endmacro
+
+section .data
+a db "INT 21h lauched BIATCH"

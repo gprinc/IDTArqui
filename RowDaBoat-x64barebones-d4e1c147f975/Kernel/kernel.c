@@ -88,30 +88,12 @@ void * initializeKernelBinary()
 void write_a();
 int main() {
 
-	ncPrint("[Finished]");
-	write_a();
-	//printf("Hello");
-	ncPrint("SUCCESS!");
+	printf("Kernel loaded, starting first module...");
+
+	((EntryPoint)sampleCodeModuleAddress)();
 
 	return 0;
 }
 // ncPrint("Veamos si llega a los 80 caracteres y ver que pasa. Solo me quedan 30 caracteres.");
 
-// void enterTextMode(){
-//     int _exit = 0;
-//     char keyboardStatus;
-//     char input;
-//     while (!_exit){
-//     	input = 0;
-//     	if (getKeyboardStatus() == 1){
-//     		input = getKeyboardData();
-//     	}
-//     	if (input >= 0 && input < 57 && input != '\0'){
-//     		ncPrintChar(keyCodes[input]);
-//     	}
-//        if (input == 0x01){
-//           ncPrintChar('Exiting console.');
-//            _exit = 1;
-//        }
-//     }
-// }
+

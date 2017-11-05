@@ -1,0 +1,5 @@
+When making changes to the asm libraries, compile them with
+
+"nasm -felf64 asmfile.asm -o asmfile.o"
+
+before executeing make

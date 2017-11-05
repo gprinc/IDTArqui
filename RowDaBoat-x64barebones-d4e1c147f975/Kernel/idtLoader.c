@@ -5,7 +5,7 @@
 #include <defs.h>
 #include <interruptions.h>
 #include <exceptions.h>
-//#include <keyboard.h>
+
 #pragma pack(push)
 #pragma pack (1)
 
@@ -35,6 +35,7 @@ void setup_IDT_entry (int index, uint64_t offset) {
 
 //Defined in interruptions.asm
 void int_syscall();
+void int_keyboard();
 void _sti();
 void picMasterMask();
 void picSlaveMask();
@@ -48,10 +49,10 @@ void initIDT(){
 	//setup_IDT_entry(0x20, (uint64_t)&handle_syscall);
 
 	//Keyboard interruption
-	//setup_IDT_entry(0x21, (uint64_t)&handle_keyboard_interruption);
+	setup_IDT_entry(0x21, (uint64_t)&int_keyboard);
 
 	//Syscalls interruption
-	setup_IDT_entry(0x80, (uint64_t)&handle_syscall);
+	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
 
 	picMasterMask(0xFE);
 	picSlaveMask(0xFF);
