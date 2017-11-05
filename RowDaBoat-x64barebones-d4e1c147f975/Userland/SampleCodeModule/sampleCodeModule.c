@@ -6,6 +6,7 @@
 int main() {
 	//startShell();
 	//ncPrintChar('h');
+	printf("HELLO\n");
 	return 0;
 }
 

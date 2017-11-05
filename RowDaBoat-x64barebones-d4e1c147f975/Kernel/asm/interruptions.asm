@@ -2,6 +2,7 @@ EXTERN handle_syscall
 EXTERN handle_keyboard_input
 GLOBAL int_keyboard
 GLOBAL int_syscall
+GLOBAL _cli
 GLOBAL _sti
 GLOBAL picMasterMask
 GLOBAL picSlaveMask
@@ -22,15 +23,17 @@ int_keyboard:
 	mov rdi, 0x0
 	in al, 60h
 	movzx rdi, al
-	mov rdi, 0x2
-	mov rsi, a
-	call handle_syscall
+	call handle_keyboard_input
 
 	mov al, 20h
 	out 20h, al
 
 	popState
 	iretq
+
+_cli:
+	cli
+	ret
 
 _sti:
 	sti

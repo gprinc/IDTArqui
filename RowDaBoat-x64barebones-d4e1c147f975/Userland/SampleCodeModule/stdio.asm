@@ -4,9 +4,6 @@ section .text
 printf:
 	mov rax, rdi
 	mov rdi, 0x2
-	mov rsi, a
+	mov rsi, rax
 	int 80h
 	ret
-
-section .data
-a db "a a", 0

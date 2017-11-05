@@ -8,7 +8,7 @@ static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8',
 								'\0', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '\0', '\0', ' ', '\0'};
 
 void handle_keyboard_input(int input){
-	printf("dskds");
+	printf("We have entered the keyboard handler...Fascinating");
 	printf(keyCodes[input]);
 	buffer[bufferLength++] = keyCodes[input];
 }
