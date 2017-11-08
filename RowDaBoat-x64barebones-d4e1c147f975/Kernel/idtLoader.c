@@ -34,8 +34,13 @@ void setup_IDT_entry (int index, uint64_t offset) {
 }
 
 //Defined in asm/interruptions.asm
+void exc_divide_by_0();
+void exc_overflow();
+void exc_invalid_opcode();
+
 void int_syscall();
 void int_keyboard();
+
 void _cli();
 void _sti();
 void picMasterMask();
@@ -44,8 +49,17 @@ void picSlaveMask();
 void initIDT(){
 	_cli();
 
-	//Access denied exception (cooler name for SegFault)
-	setup_IDT_entry(0x0, (uint64_t)&exc_access_denied);
+	//Divide by 0 exception 
+	setup_IDT_entry(0x0, (uint64_t)&exc_divide_by_0);
+
+	//Overflow exception 
+	setup_IDT_entry(0x4, (uint64_t)&exc_overflow);
+
+	//Invalid Operation Code exception
+	setup_IDT_entry(0x6, (uint64_t)&exc_invalid_opcode);
+
+
+	//Access Denied exception(cooler name for SegFault)
 
 	//Timer tick exception
 	//setup_IDT_entry(0x20, (uint64_t)&handle_syscall);
@@ -56,7 +70,7 @@ void initIDT(){
 	//Syscalls interruption
 	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
 
-	picMasterMask(0xFE); //11111110
+	picMasterMask(0xFD); //11111101
 	picSlaveMask(0xFF);
 	_sti();
 }

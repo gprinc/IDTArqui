@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "standardio.h"
 
 /* sampleCodeModule.c */
 //void print(const char * string);
@@ -6,25 +6,35 @@
 int main() {
 	//startShell();
 	//ncPrintChar('h');
-	printf("HELLO\n");
+	clearScreen();
+	printf("Welcom to GuinsaOS! Please enter a command. For a list of commands, enter \"help\".\n");
+	startShell();
 	return 0;
 }
 
-// void startShell(){
-// 	// void enterTextMode(){
-//     int _exit = 0;
-//     char input;
-//     while ((input = getChar()) != {
-//     	input = 0;
-//     	if (getKeyboardStatus() == 1){
-//     		input = getKeyboardData();
-//     	}
-//     	if (input >= 0 && input < 57 && input != '\0'){
-//     		ncPrintChar(keyCodes[input]);
-//     	}
-//        if (input == 0x01){
-//           ncPrintChar('Exiting console.');
-//            _exit = 1;
-//        }
-//     }
-// }
+void displayHelp(){
+	printf("These are the possible commands you can use:\n");
+	printf("That's it.\n");
+}
+
+void startShell(){
+    int _exit = 0;
+    char* input;
+    while(!_exit){
+    	input = scanf();
+    	if ((int)input != -1){
+    		if (!strCmp(input, "help\n")){
+    			displayHelp();
+    		} else if (!strCmp(input, "time")){
+
+    		} else if (!strCmp(input, "time")){
+
+    		} else if (!strCmp(input, "time")){
+
+    		} else if (!strCmp(input, "time")){
+
+    		}
+    	}    	
+    }
+}
+
