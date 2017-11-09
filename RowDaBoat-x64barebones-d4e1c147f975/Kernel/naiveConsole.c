@@ -16,6 +16,11 @@ void ncPrint(const char * string)
 		ncPrintChar(string[i]);
 }
 
+void ncReturn(){
+	*currentVideo = 0;
+	currentVideo -=2;
+}
+
 void ncPrintChar(char character)
 {
 	if (character == '\n'){

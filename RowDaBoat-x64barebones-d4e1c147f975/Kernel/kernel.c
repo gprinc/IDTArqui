@@ -57,8 +57,9 @@ void * initializeKernelBinary()
 void write_a();
 int main() {
 
-	printf("[Kernel initialized, starting first module...]");
+	printf("[Kernel initialized, starting first module...]\n");
 
+	clearScreen();
 	((EntryPoint)sampleCodeModuleAddress)();
 
 

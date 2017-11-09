@@ -7,6 +7,25 @@ void putChar(char c){
 	printf(printChar);
 }
 
+void printNum(int num){
+	char string[100];
+	int aux = num;
+	int i = 1;
+	int divisor = 1;
+	while(aux /= 10)
+		i++;
+	aux = num;
+	for (int j = 0; j < i; j++){
+		divisor = 1;
+		for (int k = 1; k < i-j; k++)
+			divisor *= 10;
+		string[j] = '0' + aux/divisor;
+		aux -= divisor * (aux/divisor);
+	}
+	string[i] = 0;
+	printf(string);
+}
+
 char getChar(){
 	char* keyboardBuffer = scanf();
 	int i = 0;

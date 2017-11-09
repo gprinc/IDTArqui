@@ -3,6 +3,8 @@ EXTERN handle_keyboard_input
 EXTERN handle_exc_divide_by_0
 EXTERN handle_exc_overflow
 EXTERN handle_exc_invalid_opcode
+EXTERN printNum
+
 GLOBAL int_keyboard
 GLOBAL int_syscall
 GLOBAL exc_divide_by_0
@@ -14,6 +16,23 @@ GLOBAL picMasterMask
 GLOBAL picSlaveMask
 
 section .text
+
+%macro eraseState 0
+	mov rax, 0x1
+	mov rbx, 0x1
+	mov rcx, 0x1
+	mov rdx, 0x0
+	mov rdi, 0x1
+	mov rsi, 0x1
+	mov r8, 0x1
+	mov r9, 0x1
+	mov r10, 0x1
+	mov r11, 0x1
+	mov r12, 0x1
+	mov r13, 0x1
+	mov r14, 0x1
+	mov r15, 0x1
+%endmacro
 
 %macro pushState 0
 	push rax
@@ -75,11 +94,13 @@ int_keyboard:
 
 
 exc_divide_by_0:
-	pushState
 
 	call handle_exc_divide_by_0
 
-	popState
+	pop rbp
+	mov rbp, 0x400000
+	push rbp
+	
 	iretq
 
 exc_overflow:
@@ -91,11 +112,13 @@ exc_overflow:
 	iretq
 
 exc_invalid_opcode:
-	pushState
 
 	call handle_exc_invalid_opcode
 
-	popState
+	pop rbp
+	mov rbp, 0x400000
+	push rbp
+
 	iretq
 
 

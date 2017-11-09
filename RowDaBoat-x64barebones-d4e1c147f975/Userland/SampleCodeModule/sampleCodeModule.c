@@ -1,13 +1,13 @@
 #include "standardio.h"
+#include "exceptionTriggers.h"
 
 /* sampleCodeModule.c */
 //void print(const char * string);
 
 int main() {
-	//startShell();
-	//ncPrintChar('h');
-	clearScreen();
-	printf("Welcom to GuinsaOS! Please enter a command. For a list of commands, enter \"help\".\n");
+	printf("Welcom to GuinsaOS!");
+	putChar(1);
+	printf("\nPlease enter a command. For a list of commands, enter \"help\".\n");
 	startShell();
 	return 0;
 }
@@ -25,16 +25,18 @@ void startShell(){
     	if ((int)input != -1){
     		if (!strCmp(input, "help\n")){
     			displayHelp();
-    		} else if (!strCmp(input, "time")){
-
-    		} else if (!strCmp(input, "time")){
-
-    		} else if (!strCmp(input, "time")){
-
-    		} else if (!strCmp(input, "time")){
+    		} else if (!strCmp(input, "exit\n")){
+    			_exit = 1;
+    		} else if (!strCmp(input, "zerodivision\n")){
+    			triggerDivideByZero();
+    		} else if (!strCmp(input, "overflow\n")){
+    			triggerOverflow();
+    		} else if (!strCmp(input, "invalidopcode\n")){
+    			triggerInvalidOpcode();
+    		} else if (!strCmp(input, "time\n")){
 
     		}
-    	}    	
+    	}
     }
 }
 
