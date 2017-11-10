@@ -6,7 +6,7 @@
 //void print(const char * string);
 
 int main() {
-	printf("Welcom to GuinsaOS!");
+	printf("Welcom to JuguluOS!");
 	putChar(1);
 	printf("\nPlease enter a command. For a list of commands, enter \"help\".\n");
 	startShell();
@@ -15,7 +15,13 @@ int main() {
 
 void displayHelp(){
 	printf("These are the possible commands you can use:\n");
-	printf("That's it.\n");
+    printf( "-$ help \n     Prints message to shell console, describing the programs available to the user.\n");
+    printf("\n-$ time \n     Prints the current system time to the screen.\n");
+    printf("\n-$ graphicMode [M VALUE] [B VALUE] [POWER]\n     Draws a representation of a linear function, given through the shell,to the screen. \n");
+    printf("\n-$ zerodivision\n     Executes a program created to test the handling of Zero Division exceptions on the system.\n");
+    printf("\n-$ overflow\n     Executes a program created to test the handling of Overflow exceptions on the system.\n");
+    printf(" \n-$ invalidopcode\n     Executes a program created to test the handling of Invalid Operation Code exceptions on the system.\n");
+	//printf("That's it.\n");
 }
 
 void startShell(){
