@@ -4,6 +4,7 @@
 #include <idtLoader.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
+#include <videoDriver.h>
 #include <stdio.h>
 
 extern uint8_t text;
@@ -59,7 +60,15 @@ int main() {
 
 	printf("[Kernel initialized, starting first module...]\n");
 
-	clearScreen();
+	//clearScreen();
+	initVideoDriver();
+	//fillScreen();
+	//paintPixel(600, 600, 255, 0, 255);
+	//paintPixel(639, 3, 255, 0, 255);
+	//fillScreen();
+	for (int i = 0; i < 240; i++){
+		paintPixel(50, i, 0, 255, 0);
+	}
 	((EntryPoint)sampleCodeModuleAddress)();
 
 

@@ -8,3 +8,4 @@ void putChar(char c);
 void printNum();
 char getChar();
 int strCmp(char* a, char* b);
+int strContains(char* a, char* b);

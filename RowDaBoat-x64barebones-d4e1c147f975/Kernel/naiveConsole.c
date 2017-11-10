@@ -1,12 +1,17 @@
 #include <naiveConsole.h>
+#include <font.h>
 
 static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base);
 
 static char buffer[64] = { '0' };
-static uint8_t * const video = (uint8_t*)0xB8000;
-static uint8_t * currentVideo = (uint8_t*)0xB8000;
+static uint8_t * const video = (uint8_t*)0xB0000;
+static uint8_t * currentVideo = (uint8_t*)0xB0000;
 static const uint32_t width = 80;
 static const uint32_t height = 25 ;
+
+void ncPaintPixel(int x, int y, int r, int g, int b){
+	int i = 0;
+}
 
 void ncPrint(const char * string)
 {
@@ -17,15 +22,18 @@ void ncPrint(const char * string)
 }
 
 void ncReturn(){
-	*currentVideo = 0;
 	currentVideo -=2;
+	*currentVideo = 0;
 }
 
 void ncPrintChar(char character)
 {
+	//char * pixelMap = pixelMap(character);
 	if (character == '\n'){
 		ncNewline();
-	} else{
+	} else if (character == 8){
+		ncReturn();
+	} else {
 		*currentVideo = character;
 		currentVideo += 2;
 	}

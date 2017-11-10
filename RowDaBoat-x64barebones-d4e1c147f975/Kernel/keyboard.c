@@ -7,7 +7,7 @@ char auxBuffer[BUFFER_SIZE];
 
 int bufferLength = 0;
 
-static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\b',
+static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\b', // \b should be 8
 								'\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', ']', '\n',
 								' ', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', ' ', ' ', '\n',
 								' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', ' ', ' ', ' ', ' '};
@@ -17,6 +17,12 @@ void handle_keyboard_input(int input){
 		clearBuffer(auxBuffer);
 	if (input >= 128)
 		return;
+	if (keyCodes[input] == '\b'){
+		bufferLength--;
+		buffer[bufferLength] = 0;
+		putChar(keyCodes[input]);
+		return;
+	}
 	putChar(keyCodes[input]);
 	buffer[bufferLength++] = keyCodes[input];
 	buffer[bufferLength] = 0;

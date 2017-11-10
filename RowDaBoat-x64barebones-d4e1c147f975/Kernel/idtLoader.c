@@ -37,6 +37,7 @@ void setup_IDT_entry (int index, uint64_t offset) {
 void exc_divide_by_0();
 void exc_overflow();
 void exc_invalid_opcode();
+void exc_timer_tick();
 
 void int_syscall();
 void int_keyboard();
@@ -62,7 +63,7 @@ void initIDT(){
 	//Access Denied exception(cooler name for SegFault)
 
 	//Timer tick exception
-	//setup_IDT_entry(0x20, (uint64_t)&handle_syscall);
+	setup_IDT_entry(0x20, (uint64_t)&exc_timer_tick);
 
 	//Keyboard interruption
 	setup_IDT_entry(0x21, (uint64_t)&int_keyboard);
@@ -70,7 +71,7 @@ void initIDT(){
 	//Syscalls interruption
 	setup_IDT_entry(0x80, (uint64_t)&int_syscall);
 
-	picMasterMask(0xFD); //11111101
+	picMasterMask(0xFC); //11111100
 	picSlaveMask(0xFF);
 	_sti();
 }

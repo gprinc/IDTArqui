@@ -44,3 +44,22 @@ int strCmp(char* a, char* b){
 	}
 	return 0;
 }
+
+//Checks if string a is cntained within string b
+int strContains(char* a, char* b){
+	int i = 0, j = 0;
+	while (a[i] != b[j]){
+		j++;
+		if (b[j] == 0)
+			return 0;
+	}
+	while(a[i] != 0){
+		if (b[j] == 0)
+			return 0;
+		if (a[i] != b[j])
+			return strContains(a, b+i);
+		i++;
+		j++;
+	}
+	return 1;
+}
