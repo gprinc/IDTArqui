@@ -125,3 +125,25 @@ void colorCrossAxis() {
     fillChar(x, y);
   }
 }
+
+int checkValue(char * entry) {
+	int value = 1;
+	char index = 0;
+	char c = entry[index];
+	while(c!='\0') {
+		if(c > '0' && c < '9') {
+			value = value*10 + (c -'0');
+		} else if(c == '-'){
+			if(index == 0) {
+				value *= -1;
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+		index++;
+		c = entry[index];
+	}
+	return 1;
+}
