@@ -5,7 +5,7 @@
 #include <moduleLoader.h>
 #include <naiveConsole.h>
 #include <videoDriver.h>
-#include <stdio.h>
+#include <standardio.h>
 
 extern uint8_t text;
 extern uint8_t rodata;
@@ -61,27 +61,10 @@ int main() {
 
 	printf("[Kernel initialized, starting first module...]\n");
 
-	//clearScreen();
-	//fillScreen();
-	//paintPixel(600, 600, 255, 0, 255);
-	//paintPixel(639, 3, 255, 0, 255);
-	//fillScreen();
-	ncPrintChar('H');
-		ncPrintChar('o');
+	clearScreen();
 
-	ncPrintChar('l');
-
-	ncPrintChar('a');
-
-	char * string = " wtf";
-	ncPrint(string);
-	//ncPrint("Holiis");
-
-	// for (int i = 0; i < 475; i++){
-	// 	paintPixel(50, i, 0, 255, 0);
-	// }
-	// fillScreen(255, 0, 255);
-	// ncClear();
+	printNum(32);
+	printNum(323);
 	((EntryPoint)sampleCodeModuleAddress)();
 
 

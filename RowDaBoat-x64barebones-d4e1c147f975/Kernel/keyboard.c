@@ -11,7 +11,7 @@ static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8',
 								'\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', ']', '\n',
 								' ', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', ' ', ' ', '\n',
 								' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', ' ', ' ', ' ', ' '};
-
+ 
 void handle_keyboard_input(int input){
 	if (auxBuffer[0] != 0)
 		clearBuffer(auxBuffer);
@@ -19,6 +19,8 @@ void handle_keyboard_input(int input){
 		return;
 	if (keyCodes[input] == '\b'){
 		bufferLength--;
+		if (bufferLength < 0)
+			bufferLength = 0;
 		buffer[bufferLength] = 0;
 		putChar(keyCodes[input]);
 		return;

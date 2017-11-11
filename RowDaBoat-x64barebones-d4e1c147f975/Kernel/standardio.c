@@ -15,13 +15,17 @@ void printNum(int num){
 	while(aux /= 10)
 		i++;
 	aux = num;
+	for (int i = 0; i < 10; i++){
+		string[i] = '0';
+	}
 	for (int j = 0; j < i; j++){
 		divisor = 1;
 		for (int k = 1; k < i-j; k++)
 			divisor *= 10;
-		string[j] = '0' + aux/divisor;
-		aux -= divisor * (aux/divisor);
+		string[j] = '0' + (int)(aux/divisor);
+		aux -= divisor * (int)(aux/divisor);
 	}
+
 	string[i] = 0;
 	printf(string);
 }
@@ -31,35 +35,4 @@ char getChar(){
 	int i = 0;
 	while(keyboardBuffer[i++] != 0);
 	return keyboardBuffer[--i];
-}
-
-int strCmp(char* a, char* b){
-	int i = 0;
-	while(a[i] != 0 || b[i] != 0){
-		if (a[i] > b[i])
-			return 1;
-		else if (a[i] < b[i])
-			return -1;
-		i++;
-	}
-	return 0;
-}
-
-//Checks if string a is cntained within string b
-int strContains(char* a, char* b){
-	int i = 0, j = 0;
-	while (a[i] != b[j]){
-		j++;
-		if (b[j] == 0)
-			return 0;
-	}
-	while(a[i] != 0){
-		if (b[j] == 0)
-			return 0;
-		if (a[i] != b[j])
-			return strContains(a, b+i);
-		i++;
-		j++;
-	}
-	return 1;
 }

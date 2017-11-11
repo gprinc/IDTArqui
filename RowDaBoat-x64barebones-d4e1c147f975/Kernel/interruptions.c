@@ -2,12 +2,17 @@
 #include "keyboard.h"
 #include "time.h"
 
+static void* currentMemPtr = (void*)0x1000000;
+
 
 //Syscalls interrupt handler
-int handle_syscall(int id, int param1, int param2, int param3){
+int handle_syscall(int id, int param1, int param2, int param3, int param4, int param5){
+	void* aux = (void*)currentMemPtr;
 	switch (id){
-		//Exit
+		//Malloc
 		case 0:
+			currentMemPtr += param1;
+			return aux;
 			break;
 
 		//Read
@@ -42,6 +47,11 @@ int handle_syscall(int id, int param1, int param2, int param3){
 					break;
 			}
 			break;
+
+		//PaintPixel
+		case 5:
+			break;
+
 	}
 	return;
 }

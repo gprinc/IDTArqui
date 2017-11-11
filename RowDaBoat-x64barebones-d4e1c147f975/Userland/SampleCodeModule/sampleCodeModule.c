@@ -1,14 +1,14 @@
 #include "standardio.h"
+#include "strings.h"
 #include "system.h"
 #include "exceptionTriggers.h"
 
 /* sampleCodeModule.c */
-//void print(const char * string);
 
 int main() {
-	printf("Welcom to JuguluOS!");
-	putChar(1);
-	printf("\nPlease enter a command. For a list of commands, enter \"help\".\n");
+	printf("Welcome to JuguluOS!");
+    printNum(323);
+
 	startShell();
 	return 0;
 }
@@ -21,10 +21,11 @@ void displayHelp(){
     printf("\n-$ zerodivision\n     Executes a program created to test the handling of Zero Division exceptions on the system.\n");
     printf("\n-$ overflow\n     Executes a program created to test the handling of Overflow exceptions on the system.\n");
     printf(" \n-$ invalidopcode\n     Executes a program created to test the handling of Invalid Operation Code exceptions on the system.\n");
-	//printf("That's it.\n");
+    //printf("That's it.\n");
 }
 
 void startShell(){
+        printf("\nPlease enter a command. For a list of commands, enter \"help\".\n");
     int _exit = 0;
     char* input;
     while(!_exit){
@@ -44,9 +45,15 @@ void startShell(){
     		} else if (!strCmp(input, "overflow\n")){
     			triggerOverflow();
     		} else if (!strCmp(input, "invalidopcode\n")){
-    			triggerInvalidOpcode();
+    			//triggerInvalidOpcode();
     		} else if (strContains("graphicmode", input) && input[length-1] == '\n'){
-                triggerInvalidOpcode();
+                // int num = parseInt("32");
+                // for (int i = 0; i < num; i ++){
+                //     printf("a");
+                // }
+                //]]putChar(num);
+                //printNum(num);
+                //startGraphicMode(input, length);
             } else if (!strCmp(input, "time\n")){
                 printTime();
             } else if (input[length-1] == '\n'){
@@ -55,6 +62,7 @@ void startShell(){
     	}
     }
     printf("Exiting shell. Goodbye!\n");
+    return;
 }
 
 void printTime() {
@@ -76,4 +84,8 @@ void printTime() {
     };
     printf("Current time:\n");
     printf(timeString);
+}
+
+void startGraphicMode(){
+
 }

@@ -4,22 +4,25 @@
 static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base);
 
 static char buffer[64] = { '0' };
-static const uint32_t columns = 60;
-static const uint32_t rows = 25 ;
+static const uint32_t columns = 79;
+static const uint32_t rows = 29 ;
 
-//int * currentVideo = 0;
-//int * video = 0;
-
-uint8_t currentRow = 0;
-uint8_t currentCol = 0;
+int currentRow = 0;
+int currentCol = 0;
 
 void ncPrintChar(char character)
 {
 	if (character == '\n'){
 		ncNewline();
+		return;
 	} else if (character == '\b'){
 		ncReturn();
+		return;
 	} else {
+		for (int i = 0; i < CHAR_HEIGHT; i++)
+			for (int j = 0; j < CHAR_WIDTH; j++)
+				paintPixel(currentCol * CHAR_WIDTH + j, currentRow * CHAR_HEIGHT + i, 0, 0, 0);
+
 		char * pixelMap = pixel_map(character);
 		for (int i = 0; i < CHAR_HEIGHT; i++){
 			char current = pixelMap[i];
@@ -34,13 +37,9 @@ void ncPrintChar(char character)
 
 	currentCol++;
 	if (currentCol > columns){
-		currentRow++;
-		currentCol = 0;
+		ncNewline();
 	}
-	if (currentRow > rows){
-		currentCol = 0;
-		//moveCharsUp();
-	}
+
 		
 }
 
@@ -54,9 +53,12 @@ void ncPrint(const char * string)
 
 void ncReturn(){
 	currentCol--;
-	if (currentCol < 0)
+	if (currentCol < 0){
 		currentCol = 0;
-	ncPrintChar(' ');
+	} else{
+		ncPrintChar(' ');
+		currentCol--;
+	}	
 }
 
 
@@ -65,6 +67,10 @@ void ncNewline()
 {
 	currentRow++;
 	currentCol = 0;
+	if (currentRow > rows){
+		currentRow--;
+		scrollScreen(CHAR_HEIGHT);
+	}
 }
 
 void ncPrintDec(uint64_t value)
@@ -130,16 +136,4 @@ static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base)
 
 void moveCharsUp(){
 	scrollScreen(CHAR_HEIGHT);
-	// currentVideo = video;
-	// uint8_t * auxVideo = video + columns * 2;
-	// int i;
-	// for(i = 0; i < columns*(rows-1); i++){
-	//     *currentVideo=*auxVideo;
-	//     currentVideo+=2;
-	//     auxVideo+=2;
-	// }
-	// int j;
- //  	for(j=0; j < 2 * columns; j++)
- //      currentVideo[j++]= ' ';
-	// currentVideo[j]= 0;
 }

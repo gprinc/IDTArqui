@@ -67,15 +67,15 @@ void paintPixel(int x, int y, int r, int g, int b){
 }
 
 int getPixelRed(int x, int y){
-	return videoBasePtr + 3 * (x + y * width) + 2; 
+	return *(videoBasePtr + 3 * (x + y * width) + 2); 
 }
 
 int getPixelGreen(int x, int y){
-	return videoBasePtr + 3 * (x + y * width) + 1;
+	return *(videoBasePtr + 3 * (x + y * width) + 1);
 }
 
 int getPixelBlue(int x, int y){
-	return videoBasePtr + 3 * (x + y * width);
+	return *(videoBasePtr + 3 * (x + y * width));
 }
 
 void fillScreen(int r, int g, int b){
@@ -99,7 +99,7 @@ void fillScreen(int r, int g, int b){
 
 //Scrolls the screen upwards by x pixels
 void scrollScreen(int x){
-	
+
 	for (int j = x; j < height; j++)
 		for (int i = 0; i < width; i++)
 			paintPixel(i, j-x, getPixelRed(i, j), getPixelGreen(i, j), getPixelBlue(i, j));
