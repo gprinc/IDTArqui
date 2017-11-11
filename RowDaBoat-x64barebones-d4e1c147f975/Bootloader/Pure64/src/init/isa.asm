@@ -127,7 +127,7 @@ rtc_poll:
 	; 0x411B is 1280x1024x24bit, 0x413D should be 32bit
 	mov cx, 0x4112			; Put your desired mode here
 	mov bx, cx			; Mode is saved to BX for the set command later
-	int 0x10w
+	int 0x10
 
 	cmp ax, 0x004F			; Return value in AX should equal 0x004F if command supported and successful
 	jne VBEfail

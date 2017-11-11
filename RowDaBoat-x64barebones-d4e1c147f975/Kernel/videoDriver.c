@@ -36,6 +36,7 @@ void initVideoDriver(){
 	videoBasePtr = infoBlock->physbase;
 	width = infoBlock->Xres;
 	height = infoBlock->Yres;
+	fillScreen(0, 0, 0);
 }
 
 uint16_t getScreenWidth(){
@@ -52,22 +53,59 @@ uint8_t* getVideoBasePtr(){
 }
 
 void paintPixel(int x, int y, int r, int g, int b){
-		uint8_t * currentVideo = videoBasePtr;
+	if (x > width || y > height || x < 0 || y < 0)
+		return;
 
-		currentVideo += 3 * (x + width * y);
+	uint8_t * currentVideo = videoBasePtr;
 
-		*currentVideo = b;
-		currentVideo++;
-		*currentVideo = g;
-		currentVideo++;
-		*currentVideo = r;
+	currentVideo += 3 * (x + y * width);// CHAGNED
+	*currentVideo = b;
+	currentVideo++;
+	*currentVideo = g;
+	currentVideo++;
+	*currentVideo = r;
 }
 
-void fillScreen(){
+int getPixelRed(int x, int y){
+	return videoBasePtr + 3 * (x + y * width) + 2; 
+}
+
+int getPixelGreen(int x, int y){
+	return videoBasePtr + 3 * (x + y * width) + 1;
+}
+
+int getPixelBlue(int x, int y){
+	return videoBasePtr + 3 * (x + y * width);
+}
+
+void fillScreen(int r, int g, int b){
 	uint8_t * currentVideo = videoBasePtr;
 	for (int i = 0; i < width * 1 * height ; i++){
-		*currentVideo = 255;
+		int num = (long int)currentVideo % 3;
+		switch(num){
+			case 0:
+				*currentVideo = b;
+				break;
+			case 1:
+				*currentVideo = g;
+				break;
+			case 2:
+				*currentVideo = r;
+				break;
+		}
 		currentVideo++;
 	}
+}
+
+//Scrolls the screen upwards by x pixels
+void scrollScreen(int x){
+	
+	for (int j = x; j < height; j++)
+		for (int i = 0; i < width; i++)
+			paintPixel(i, j-x, getPixelRed(i, j), getPixelGreen(i, j), getPixelBlue(i, j));
+
+	for (int j = height - x; j < height; j++)
+		for (int i = 0; i < width; i++)
+			paintPixel(i, j, 0, 0, 0);
 }
 

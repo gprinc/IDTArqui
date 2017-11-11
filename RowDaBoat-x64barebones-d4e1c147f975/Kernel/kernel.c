@@ -39,6 +39,7 @@ void * getStackBase()
 void * initializeKernelBinary()
 {
 	char buffer[10];
+	initVideoDriver();
 
 	ncPrint("[Initializing kernel...]");
 	void * moduleAddresses[] = {
@@ -55,20 +56,32 @@ void * initializeKernelBinary()
 	return getStackBase();
 }
 
-void write_a();
 int main() {
+	initVideoDriver();
 
 	printf("[Kernel initialized, starting first module...]\n");
 
 	//clearScreen();
-	initVideoDriver();
 	//fillScreen();
 	//paintPixel(600, 600, 255, 0, 255);
 	//paintPixel(639, 3, 255, 0, 255);
 	//fillScreen();
-	for (int i = 0; i < 240; i++){
-		paintPixel(50, i, 0, 255, 0);
-	}
+	ncPrintChar('H');
+		ncPrintChar('o');
+
+	ncPrintChar('l');
+
+	ncPrintChar('a');
+
+	char * string = " wtf";
+	ncPrint(string);
+	//ncPrint("Holiis");
+
+	// for (int i = 0; i < 475; i++){
+	// 	paintPixel(50, i, 0, 255, 0);
+	// }
+	// fillScreen(255, 0, 255);
+	// ncClear();
 	((EntryPoint)sampleCodeModuleAddress)();
 
 
