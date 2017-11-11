@@ -17,7 +17,7 @@ void displayHelp(){
 	printf("These are the possible commands you can use:\n");
     printf( "-$ help \n     Prints message to shell console, describing the programs available to the user.\n");
     printf("\n-$ time \n     Prints the current system time to the screen.\n");
-    printf("\n-$ graphicMode [M VALUE] [B VALUE] [POWER]\n     Draws a representation of a linear function, given through the shell,to the screen. \n");
+    printf("\n-$ graphicmode [M VALUE] [B VALUE] [POWER]\n     Draws a representation of a linear function, given through the shell,to the screen. \n");
     printf("\n-$ zerodivision\n     Executes a program created to test the handling of Zero Division exceptions on the system.\n");
     printf("\n-$ overflow\n     Executes a program created to test the handling of Overflow exceptions on the system.\n");
     printf(" \n-$ invalidopcode\n     Executes a program created to test the handling of Invalid Operation Code exceptions on the system.\n");
@@ -45,7 +45,9 @@ void startShell(){
     			triggerOverflow();
     		} else if (!strCmp(input, "invalidopcode\n")){
     			triggerInvalidOpcode();
-    		} else if (!strCmp(input, "time\n")){
+    		} else if (strContains("graphicmode", input) && input[length-1] == '\n'){
+                triggerInvalidOpcode();
+            } else if (!strCmp(input, "time\n")){
                 printTime();
             } else if (input[length-1] == '\n'){
                 printf("Command not recognized. For a list of commands, enter \"help\".\n");

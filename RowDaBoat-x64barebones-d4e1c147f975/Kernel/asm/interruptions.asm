@@ -3,6 +3,7 @@ EXTERN handle_keyboard_input
 EXTERN handle_exc_divide_by_0
 EXTERN handle_exc_overflow
 EXTERN handle_exc_invalid_opcode
+EXTERN handle_exc_timer_tick
 EXTERN printNum
 
 GLOBAL int_keyboard
@@ -10,6 +11,7 @@ GLOBAL int_syscall
 GLOBAL exc_divide_by_0
 GLOBAL exc_overflow
 GLOBAL exc_invalid_opcode
+GLOBAL exc_timer_tick
 GLOBAL _cli
 GLOBAL _sti
 GLOBAL picMasterMask
@@ -121,6 +123,16 @@ exc_invalid_opcode:
 
 	iretq
 
+exc_timer_tick:
+	pushState
+
+	call handle_exc_timer_tick
+
+	mov al, 20h
+	out 20h, al
+
+	popState
+	iretq
 
 _cli:
 	cli

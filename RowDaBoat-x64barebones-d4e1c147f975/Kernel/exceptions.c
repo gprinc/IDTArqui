@@ -26,21 +26,27 @@ void handle_exc_access_denied(){
 void handle_exc_divide_by_0(){
 	printf("[EXCEPTION 00] Division by zero exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
 	printCPUState();
-	printf("-------------------------------");
+	printf("-------------------------------\n");
 }
 
 //Overflow exception handler
 void handle_exc_overflow(){
 	printf("[EXCEPTION 04] Overflow exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
 	printCPUState();
-	printf("-------------------------------");
+	printf("-------------------------------\n");
 }
 
 //Invalid Operation Code exception handler
 void handle_exc_invalid_opcode(){
 	printf("[EXCEPTION 06] Invalid Operation Code exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
 	printCPUState();
-	printf("-------------------------------");
+	printf("-------------------------------\n");
+}
+
+//Timer Tick exception handler
+void handle_exc_timer_tick(){
+	static int ticks = 0;
+	ticks++;
 }
 
 void printCPUState(){
