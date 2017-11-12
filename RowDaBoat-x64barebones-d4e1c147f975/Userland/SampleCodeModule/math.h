@@ -1,1 +1,1 @@
-int power(int base, int pow);
+int pow(int base, int pow);

@@ -7,3 +7,4 @@ void clearScreen();
 void putChar(char c);
 void printNum(int n);
 char getChar();
+void paintPixel();

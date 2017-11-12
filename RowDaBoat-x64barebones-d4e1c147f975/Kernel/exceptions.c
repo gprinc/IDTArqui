@@ -17,38 +17,6 @@ int get_reg_r13();
 int get_reg_r14();
 int get_reg_r15();
 
-//Access Denied exception handler
-void handle_exc_access_denied(){
-	
-}
-
-//Zero Division exception handler
-void handle_exc_divide_by_0(){
-	printf("[EXCEPTION 00] Division by zero exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
-	printCPUState();
-	printf("-------------------------------\n");
-}
-
-//Overflow exception handler
-void handle_exc_overflow(){
-	printf("[EXCEPTION 04] Overflow exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
-	printCPUState();
-	printf("-------------------------------\n");
-}
-
-//Invalid Operation Code exception handler
-void handle_exc_invalid_opcode(){
-	printf("[EXCEPTION 06] Invalid Operation Code exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
-	printCPUState();
-	printf("-------------------------------\n");
-}
-
-//Timer Tick exception handler
-void handle_exc_timer_tick(){
-	static int ticks = 0;
-	ticks++;
-}
-
 void printCPUState(){
 	printf("RAX: ");
 	printNum(get_reg_rax());
@@ -96,3 +64,36 @@ void printCPUState(){
 	printNum(get_reg_r15());
 	printf("\n");
 }
+
+//Access Denied exception handler
+void handle_exc_access_denied(){
+	
+}
+
+//Zero Division exception handler
+void handle_exc_divide_by_0(){
+	printf("[EXCEPTION 00] Division by zero exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
+	printCPUState();
+	printf("-------------------------------\n");
+}
+
+//Overflow exception handler
+void handle_exc_overflow(){
+	printf("[EXCEPTION 04] Overflow exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
+	printCPUState();
+	printf("-------------------------------\n");
+}
+
+//Invalid Operation Code exception handler
+void handle_exc_invalid_opcode(){
+	printf("[EXCEPTION 06] Invalid Operation Code exception!\nThe program will be terminated.\nThe register values were the following when the interruption took place:\n");
+	printCPUState();
+	printf("-------------------------------\n");
+}
+
+//Timer Tick exception handler
+void handle_exc_timer_tick(){
+	static int ticks = 0;
+	ticks++;
+}
+

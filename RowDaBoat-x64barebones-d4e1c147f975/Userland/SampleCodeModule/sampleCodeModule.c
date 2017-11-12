@@ -1,13 +1,12 @@
 #include "standardio.h"
 #include "strings.h"
 #include "system.h"
-#include "exceptionTriggers.h"
-
 /* sampleCodeModule.c */
 
 int main() {
 	printf("Welcome to JuguluOS!");
-    printNum(323);
+    paintPixel(250, 250, 255, 255, 255);
+        printNum(32);
 
 	startShell();
 	return 0;
@@ -45,15 +44,14 @@ void startShell(){
     		} else if (!strCmp(input, "overflow\n")){
     			triggerOverflow();
     		} else if (!strCmp(input, "invalidopcode\n")){
-    			//triggerInvalidOpcode();
+    			triggerInvalidOpcode();
     		} else if (strContains("graphicmode", input) && input[length-1] == '\n'){
-                // int num = parseInt("32");
-                // for (int i = 0; i < num; i ++){
-                //     printf("a");
-                // }
-                //]]putChar(num);
-                //printNum(num);
-                //startGraphicMode(input, length);
+                int num = parseInt("32");
+                printNum(num);
+                                printNum(num);
+                printNum(num);
+
+                startGraphicMode(input);
             } else if (!strCmp(input, "time\n")){
                 printTime();
             } else if (input[length-1] == '\n'){
@@ -86,6 +84,64 @@ void printTime() {
     printf(timeString);
 }
 
-void startGraphicMode(){
+void startGraphicMode(char* input){
+    int a = 0, b = 0, c = 0;
+    char buffer[100];
+    char current;
+    int i = 0, j = 0;
+    for (int k = 0; k < 3; k++){
+        while ((current = input[j++]) != 0){
+            if (current >= '0' && current <= '9'){
+                buffer[i++] = current;
+                if (input[j] < '0' || input[j] > '9'){
+                    buffer[i] = 0;
+                    switch(k){
+                        case 0:
+                            a = parseInt(buffer);
+                            break;
+                        case 1:
+                            b = parseInt(buffer);
+                            break;
+                        case 2:
+                            c = parseInt(buffer);
+                            break;
+                    }
+                    i = 0;
+                }
+                    
+            }
+        }
+    }
+    printNum(20);
+    printNum(20);
+    printNum(20);
+    graphicCuadraticFunction(a, b, c);
+    return;
+}
 
+void graphicCuadraticFunction(int a, int b, int c){
+  int aux = a + b + c;
+  int defaultSpace = 1;
+  colorCrossAxis();
+  int x;
+  int y;
+  while(aux > (getScreenHeight()/2)*defaultSpace) {
+    defaultSpace *= 10;
+  }
+  for(x=0; x < getScreenWidth() ; x++) {
+    y = (a*(x^2) + b*x + c)/defaultSpace;
+    paintPixel(x, y, 255, 0, 0);
+  }
+}
+
+void colorCrossAxis() {
+  int x = getScreenWidth() / 2;
+  int y;
+  for(y=0; y < getScreenHeight(); y++) {
+    paintPixel(x, y, 255, 255, 255);
+  }
+  y=getScreenHeight()/2;
+  for(x=0; x < getScreenWidth(); x++){
+    paintPixel(x, y, 255, 255, 255);
+  }
 }

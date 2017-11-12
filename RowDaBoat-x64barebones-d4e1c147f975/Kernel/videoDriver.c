@@ -39,12 +39,12 @@ void initVideoDriver(){
 	fillScreen(0, 0, 0);
 }
 
-uint16_t getScreenWidth(){
-	return width;
+int getScreenWidth(){
+	return (int)width;
 }
 
-uint16_t getScreenHeight(){
-	return height;
+int getScreenHeight(){
+	return (int)height;
 }
 
 uint8_t* getVideoBasePtr(){

@@ -1,6 +1,7 @@
 GLOBAL printf
 GLOBAL scanf
 GLOBAL clearScreen
+GLOBAL paint
 
 section .text
 printf:
@@ -17,5 +18,10 @@ scanf:
 
 clearScreen:
 	mov rdi, 0x3
+	int 80h
+	ret
+
+paint:
+	mov rdi, 0x5
 	int 80h
 	ret

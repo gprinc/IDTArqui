@@ -38,6 +38,7 @@ char* getKeyboardBuffer(){
 		bufferLength = 0;
 		clearBuffer(buffer);
 	}
+	//Null terminate auxBuffer
 	return auxBuffer;
 }
 

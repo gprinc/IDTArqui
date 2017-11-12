@@ -1,4 +1,5 @@
 #include "math.h"
+#include "standardio.h"
 //String compare
 int strCmp(char* a, char* b){
 	int i = 0;
@@ -32,22 +33,23 @@ int strContains(char* a, char* b){
 }
 
 int parseInt(char* string){
-	int numDigits, negative = 0;
+	int numDigits = 0, negative = 0;
 	int result = 0;
 
 	if (string[0] == '-')
 		negative = 1;
 
-	numDigits = 0;
+	numDigits = negative?1:0;
 	while(string[numDigits] != 0){
 		if (string[numDigits] < '0' || string[numDigits] > '9')
 			return 0;
 		numDigits++;
 	}
-	//if (negative) numDigits--;
+	if (negative) numDigits--;
 
-	for(int i = 0; i < numDigits; i++){
-		result += (string[i] - '0') * power(10, numDigits-1-i);
+	for(int i = negative?numDigits:numDigits-1; i >= negative?1:0; i--){
+		result += (string[i] - '0') * pow(10, negative?numDigits-i:numDigits-1-i);
 	}
 	return result;
+
 }

@@ -3,3 +3,5 @@ int getSystemSeconds();
 int getSystemMinutes();
 int getSystemHours();
 void* malloc(int bytes);
+int getScreenWidth();
+int getScreenHeight();

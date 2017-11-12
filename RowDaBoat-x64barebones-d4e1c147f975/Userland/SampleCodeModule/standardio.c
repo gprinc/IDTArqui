@@ -2,6 +2,7 @@
 //Defined in stdio.asm
 void printf();
 char* scanf();
+void paint();
 
 void putChar(char c){
 	char printChar[2] = {c, 0};
@@ -33,4 +34,8 @@ char getChar(){
 	int i = 0;
 	while(keyboardBuffer[i++] != 0);
 	return keyboardBuffer[--i];
+}
+
+void paintPixel(int x, int y, int r, int g, int b){
+	paint(0, x, y, r, g, b);
 }
