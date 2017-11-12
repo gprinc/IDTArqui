@@ -88,11 +88,9 @@ void startGraphicMode(char* input){
     int nextNum = 0;
     putChar(input[j]);
     for (int k = 0; k < 3; k++){
-        putChar(input[j]);
         nextNum = 0;
         while ((current = input[j++]) != 0 && !nextNum){
             if (current >= '0' && current <= '9'){
-                putChar(current);
                 buffer[i++] = current;
                 if (input[j] < '0' || input[j] > '9'){
                     buffer[i] = 0;
