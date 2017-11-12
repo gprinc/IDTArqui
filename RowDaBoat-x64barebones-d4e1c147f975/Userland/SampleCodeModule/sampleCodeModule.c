@@ -47,10 +47,6 @@ void startShell(){
     			triggerInvalidOpcode();
     		} else if (strContains("graphicmode", input) && input[length-1] == '\n'){
                 int num = parseInt("32");
-                printNum(num);
-                                printNum(num);
-                printNum(num);
-
                 startGraphicMode(input);
             } else if (!strCmp(input, "time\n")){
                 printTime();
@@ -89,9 +85,14 @@ void startGraphicMode(char* input){
     char buffer[100];
     char current;
     int i = 0, j = 0;
+    int nextNum = 0;
+    putChar(input[j]);
     for (int k = 0; k < 3; k++){
-        while ((current = input[j++]) != 0){
+        putChar(input[j]);
+        nextNum = 0;
+        while ((current = input[j++]) != 0 && !nextNum){
             if (current >= '0' && current <= '9'){
+                putChar(current);
                 buffer[i++] = current;
                 if (input[j] < '0' || input[j] > '9'){
                     buffer[i] = 0;
@@ -107,14 +108,18 @@ void startGraphicMode(char* input){
                             break;
                     }
                     i = 0;
+                    nextNum = 1;
                 }
                     
             }
         }
     }
-    printNum(20);
-    printNum(20);
-    printNum(20);
+    printNum(a);
+    putChar('\n');
+    printNum(b);
+        putChar('\n');
+
+    printNum(c);
     graphicCuadraticFunction(a, b, c);
     return;
 }

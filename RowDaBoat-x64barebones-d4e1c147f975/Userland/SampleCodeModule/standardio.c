@@ -7,6 +7,7 @@ void paint();
 void putChar(char c){
 	char printChar[2] = {c, 0};
 	printf(printChar);
+	return;
 }
 
 void printNum(int num){
@@ -27,6 +28,7 @@ void printNum(int num){
 
 	string[i] = 0;
 	printf(string);
+	return;
 }
 
 char getChar(){
@@ -38,4 +40,5 @@ char getChar(){
 
 void paintPixel(int x, int y, int r, int g, int b){
 	paint(0, x, y, r, g, b);
+	return;
 }
