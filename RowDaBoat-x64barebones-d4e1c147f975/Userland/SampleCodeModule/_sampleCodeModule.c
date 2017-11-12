@@ -1,19 +1,25 @@
 #include "standardio.h"
 #include "strings.h"
 #include "system.h"
-/* sampleCodeModule.c */
+/* _sampleCodeModule.c */
+
+void startShell();
+void startGraphicMode();
+void printTime();
+void graphicCuadraticFunction();
+void colorCrossAxis();
+
 
 int main() {
-	printf("Welcome to JuguluOS!");
-    paintPixel(250, 250, 255, 255, 255);
-        printNum(32);
+    printf("Welcome to JuguluOS!");
 
-	startShell();
-	return 0;
+
+    startShell();
+    return 0;
 }
 
 void displayHelp(){
-	printf("These are the possible commands you can use:\n");
+    printf("These are the possible commands you can use:\n");
     printf( "-$ help \n     Prints message to shell console, describing the programs available to the user.\n");
     printf("\n-$ time \n     Prints the current system time to the screen.\n");
     printf("\n-$ graphicmode [M VALUE] [B VALUE] [POWER]\n     Draws a representation of a linear function, given through the shell,to the screen. \n");
@@ -26,34 +32,33 @@ void displayHelp(){
 void startShell(){
         printf("\nPlease enter a command. For a list of commands, enter \"help\".\n");
     int _exit = 0;
-    char* input;
+    char input[100];
     while(!_exit){
-    	input = scanf();
-    	if ((int)input != -1){
+        int result = scanf(input);
+        if (result != 0){
 
             int length = 0;
             while(input[length++] != 0);
             length--;
 
-    		if (!strCmp(input, "help\n")){
-    			displayHelp();
-    		} else if (!strCmp(input, "exit\n")){
-    			_exit = 1;
-    		} else if (!strCmp(input, "zerodivision\n")){
-    			triggerDivideByZero();
-    		} else if (!strCmp(input, "overflow\n")){
-    			triggerOverflow();
-    		} else if (!strCmp(input, "invalidopcode\n")){
-    			triggerInvalidOpcode();
-    		} else if (strContains("graphicmode", input) && input[length-1] == '\n'){
-                int num = parseInt("32");
+            if (!strCmp(input, "help\n")){
+                displayHelp();
+            } else if (!strCmp(input, "exit\n")){
+                _exit = 1;
+            } else if (!strCmp(input, "zerodivision\n")){
+                triggerDivideByZero();
+            } else if (!strCmp(input, "overflow\n")){
+                triggerOverflow();
+            } else if (!strCmp(input, "invalidopcode\n")){
+                triggerInvalidOpcode();
+            } else if (strContains("graphicmode", input) && input[length-1] == '\n'){
                 startGraphicMode(input);
             } else if (!strCmp(input, "time\n")){
                 printTime();
             } else if (input[length-1] == '\n'){
                 printf("Command not recognized. For a list of commands, enter \"help\".\n");
             }
-    	}
+        }
     }
     printf("Exiting shell. Goodbye!\n");
     return;
@@ -86,7 +91,8 @@ void startGraphicMode(char* input){
     char current;
     int i = 0, j = 0;
     int nextNum = 0;
-    putChar(input[j]);
+    //putChar(input[j]);
+    printf("Hola");
     for (int k = 0; k < 3; k++){
         nextNum = 0;
         while ((current = input[j++]) != 0 && !nextNum){
@@ -118,7 +124,7 @@ void startGraphicMode(char* input){
         putChar('\n');
 
     printNum(c);
-    graphicCuadraticFunction(a, b, c);
+    graphicCuadraticFunction(0, -1, 10);
     return;
 }
 
@@ -132,10 +138,23 @@ void graphicCuadraticFunction(int a, int b, int c){
     defaultSpace *= 10;
   }
   for(x=0; x < getScreenWidth() ; x++) {
-    y = (a*(x^2) + b*x + c)/defaultSpace;
+    //x = getScreenWidth()/2 - x;
+    y = (a*(x^2) + b*x + c)*defaultSpace;
+    y = getScreenHeight()/2 - y;
     paintPixel(x, y, 255, 0, 0);
   }
 }
+
+// void graphicCuadraticFunction(int a, int b, int c){
+//     int unitWidth = 10, unitHeight = 10;
+//     int xUnitsPerScreen = getScreenWidth() / unitWidth;
+//     int yUnitsPerScreen = getScreenHeight() / unitHeight;
+// }
+
+// void screenToWorldCoordinates(int* x, int* y, int defaultSpace){
+//     *x = (*x -getScreenWidth/2)/defaultSpace;
+//     *y = (getScreenHeight/2 - *y)/defaultSpace;
+// }
 
 void colorCrossAxis() {
   int x = getScreenWidth() / 2;

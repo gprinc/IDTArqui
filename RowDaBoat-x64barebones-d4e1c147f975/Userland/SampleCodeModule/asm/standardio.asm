@@ -12,6 +12,7 @@ printf:
 	ret
 
 scanf:
+	mov rsi, rdi
 	mov rdi, 0x1
 	int 80h
 	ret

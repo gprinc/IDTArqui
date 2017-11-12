@@ -19,9 +19,9 @@ int handle_syscall(int id, int param1, int param2, int param3, int param4, int p
 		//Read
 		case 1:
 			if (getKeyboardBufferLength() > 0)
-				return getKeyboardBuffer();
+				getKeyboardBuffer((char*)param1);
 			else
-				return -1;
+				return 0;
 			break;
 
 		//Write

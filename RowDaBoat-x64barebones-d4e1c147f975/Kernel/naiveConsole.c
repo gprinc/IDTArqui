@@ -10,7 +10,7 @@ static const uint32_t rows = 29 ;
 int currentRow = 0;
 int currentCol = 0;
 
-void ncPrintChar(char character)
+void ncPrintChar(const char character)
 {
 	if (character == '\n'){
 		ncNewline();

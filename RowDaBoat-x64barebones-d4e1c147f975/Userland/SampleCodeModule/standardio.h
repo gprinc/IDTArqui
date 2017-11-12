@@ -1,6 +1,6 @@
 //Defined in standardio.asm
 void printf(char * string);
-char* scanf();
+int scanf(char* target);
 void clearScreen();
 
 //Defined in standardio.c

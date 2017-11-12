@@ -1,4 +1,5 @@
 #include <naiveConsole.h>
+#include <videoDriver.h>
 
 uint16_t width;
 uint16_t height;
@@ -32,8 +33,8 @@ typedef struct __attribute__((packed)) ModeInfoBlock {
 } ModeInfoBlock_t;
 
 void initVideoDriver(){
-	ModeInfoBlock_t* infoBlock = 0x5C00;
-	videoBasePtr = infoBlock->physbase;
+	ModeInfoBlock_t* infoBlock = (ModeInfoBlock_t*) 0x5C00;
+	videoBasePtr = (uint8_t*) infoBlock->physbase;
 	width = infoBlock->Xres;
 	height = infoBlock->Yres;
 	fillScreen(0, 0, 0);

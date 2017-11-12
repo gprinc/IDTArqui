@@ -30,16 +30,27 @@ void handle_keyboard_input(int input){
 	buffer[bufferLength] = 0;
 }
 
-char* getKeyboardBuffer(){
-	for (int i = 0; i < bufferLength; i++){
-		auxBuffer[i] = buffer[i];
+// char* getKeyboardBuffer(){
+// 	for (int i = 0; i < bufferLength; i++){
+// 		auxBuffer[i] = buffer[i];
+// 	}
+// 	if (buffer[bufferLength-1] == '\n'){
+// 		bufferLength = 0;
+// 		clearBuffer(buffer);
+// 	}
+// 	//Null terminate auxBuffer
+// 	return auxBuffer;
+// }
+
+void getKeyboardBuffer(char* target){
+	for (int i = 0; i <= bufferLength; i++){
+		target[i] = buffer[i];
 	}
 	if (buffer[bufferLength-1] == '\n'){
 		bufferLength = 0;
 		clearBuffer(buffer);
 	}
-	//Null terminate auxBuffer
-	return auxBuffer;
+	return;
 }
 
 int getKeyboardBufferLength(){
