@@ -49,7 +49,7 @@ int getScreenHeight(){
 }
 
 uint8_t* getVideoBasePtr(){
-	ModeInfoBlock_t* infoBlock = 0x5C00;
+	ModeInfoBlock_t* infoBlock = (ModeInfoBlock_t*) 0x5C00;
 	return (uint8_t*) infoBlock->physbase;
 }
 

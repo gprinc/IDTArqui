@@ -1,4 +1,5 @@
 #include <naiveConsole.h>
+#include <videoDriver.h>
 #include <font.h>
 
 static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base);
@@ -9,6 +10,28 @@ static const uint32_t rows = 29 ;
 
 int currentRow = 0;
 int currentCol = 0;
+
+void ncReturn(){
+	currentCol--;
+	if (currentCol < 0){
+		currentCol = 0;
+	} else{
+		ncPrintChar(' ');
+		currentCol--;
+	}	
+	return;
+}
+
+void ncNewline()
+{
+	currentRow++;
+	currentCol = 0;
+	if (currentRow > rows){
+		currentRow--;
+		scrollScreen(CHAR_HEIGHT);
+	}
+	return;
+}
 
 void ncPrintChar(const char character)
 {
@@ -23,7 +46,7 @@ void ncPrintChar(const char character)
 			for (int j = 0; j < CHAR_WIDTH; j++)
 				paintPixel(currentCol * CHAR_WIDTH + j, currentRow * CHAR_HEIGHT + i, 0, 0, 0);
 
-		char * pixelMap = pixel_map(character);
+		unsigned char * pixelMap = pixel_map(character);
 		for (int i = 0; i < CHAR_HEIGHT; i++){
 			char current = pixelMap[i];
 			char mask[] = {128, 64, 32, 16, 8, 4, 2, 1};
@@ -38,9 +61,8 @@ void ncPrintChar(const char character)
 	currentCol++;
 	if (currentCol > columns){
 		ncNewline();
-	}
-
-		
+	}	
+	return;
 }
 
 void ncPrint(const char * string)
@@ -49,28 +71,7 @@ void ncPrint(const char * string)
 
 	for (i = 0; string[i] != 0; i++)
 		ncPrintChar(string[i]);
-}
-
-void ncReturn(){
-	currentCol--;
-	if (currentCol < 0){
-		currentCol = 0;
-	} else{
-		ncPrintChar(' ');
-		currentCol--;
-	}	
-}
-
-
-
-void ncNewline()
-{
-	currentRow++;
-	currentCol = 0;
-	if (currentRow > rows){
-		currentRow--;
-		scrollScreen(CHAR_HEIGHT);
-	}
+	return;
 }
 
 void ncPrintDec(uint64_t value)
@@ -99,6 +100,7 @@ void ncClear()
 	currentRow = 0;
 	currentCol = 0;
 	fillScreen(0, 0, 0);
+	return;
 }
 
 static uint32_t uintToBase(uint64_t value, char * buffer, uint32_t base)

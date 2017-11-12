@@ -10,7 +10,7 @@ void putChar(char c){
 	return;
 }
 
-void printNum(int num){
+void printNum(const int num){
 	char string[100];
 	int aux = num;
 	int i = 1;

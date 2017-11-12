@@ -1,13 +1,16 @@
+#include "system.h"
 //Defined in stdio.asm
 void printf();
 char* scanf();
+void paint();
 
 void putChar(char c){
 	char printChar[2] = {c, 0};
 	printf(printChar);
+	return;
 }
 
-void printNum(int num){
+void printNum(const int num){
 	char string[100];
 	int aux = num;
 	int i = 1;
@@ -15,9 +18,6 @@ void printNum(int num){
 	while(aux /= 10)
 		i++;
 	aux = num;
-	for (int i = 0; i < 10; i++){
-		string[i] = '0';
-	}
 	for (int j = 0; j < i; j++){
 		divisor = 1;
 		for (int k = 1; k < i-j; k++)
@@ -28,6 +28,7 @@ void printNum(int num){
 
 	string[i] = 0;
 	printf(string);
+	return;
 }
 
 char getChar(){
