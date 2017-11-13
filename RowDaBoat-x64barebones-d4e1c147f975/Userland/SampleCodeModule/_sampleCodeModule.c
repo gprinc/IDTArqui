@@ -4,7 +4,6 @@
 
 int main() {
     printf("Welcome to JuguluOS!");
-    int a = 2;
 
     startShell();
     return 0;

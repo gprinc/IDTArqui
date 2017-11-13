@@ -51,6 +51,7 @@ int parseInt(char* string){
 	for(int i = negative?numDigits:numDigits-1; i >= negative?1:0; i--){
 		result += (string[i] - '0') * pow(10, negative?numDigits-i:numDigits-1-i);
 	}
-	return result;
+	printNum(result);
+	return negative? (-1) * result : result;
 
 }
