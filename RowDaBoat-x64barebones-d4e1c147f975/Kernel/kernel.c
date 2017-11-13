@@ -38,7 +38,6 @@ void * getStackBase()
 
 void * initializeKernelBinary()
 {
-	char buffer[10];
 	initVideoDriver();
 
 	ncPrint("[Initializing kernel...]");
@@ -62,9 +61,6 @@ int main() {
 	printf("[Kernel initialized, starting first module...]\n");
 
 	clearScreen();
-
-	printNum(32);
-	printNum(323);
 	((EntryPoint)sampleCodeModuleAddress)();
 
 

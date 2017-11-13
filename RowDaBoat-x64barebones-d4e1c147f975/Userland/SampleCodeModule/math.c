@@ -8,3 +8,9 @@ int pow(int base, int pow){
 	if (pow < 0) result = (int)1/result;
 	return result;
 }
+
+int mod(int n){
+	if (n < 0)
+		return -n;
+	return n;
+}

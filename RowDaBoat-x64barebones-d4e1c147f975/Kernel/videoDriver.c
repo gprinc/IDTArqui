@@ -49,7 +49,7 @@ int getScreenHeight(){
 }
 
 uint8_t* getVideoBasePtr(){
-	ModeInfoBlock_t* infoBlock = 0x5C00;
+	ModeInfoBlock_t* infoBlock = (ModeInfoBlock_t*) 0x5C00;
 	return (uint8_t*) infoBlock->physbase;
 }
 
@@ -81,7 +81,7 @@ int getPixelBlue(int x, int y){
 
 void fillScreen(int r, int g, int b){
 	uint8_t * currentVideo = videoBasePtr;
-	for (int i = 0; i < width * 1 * height ; i++){
+	for (int i = 0; i < width * 3 * height ; i++){
 		int num = (long int)currentVideo % 3;
 		switch(num){
 			case 0:

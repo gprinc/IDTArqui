@@ -5,6 +5,6 @@ void clearScreen();
 
 //Defined in standardio.c
 void putChar(char c);
-void printNum(int n);
+void printNum(const int n);
 char getChar();
 void paintPixel();

@@ -11,6 +11,11 @@ static const char keyCodes[] = {27, '`', '1', '2', '3', '4', '5', '6', '7', '8',
 								'\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', ']', '\n',
 								' ', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', ' ', ' ', '\n',
 								' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', ' ', ' ', ' ', ' '};
+
+void clearBuffer(char* buffer){
+	for (int i = 0; i < BUFFER_SIZE; i++)
+		buffer[i] = 0;
+}
  
 void handle_keyboard_input(int input){
 	if (auxBuffer[0] != 0)
@@ -55,9 +60,4 @@ void getKeyboardBuffer(char* target){
 
 int getKeyboardBufferLength(){
 	return bufferLength;
-}
-
-void clearBuffer(char* buffer){
-	for (int i = 0; i < BUFFER_SIZE; i++)
-		buffer[i] = 0;
 }

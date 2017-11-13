@@ -1,1 +1,1 @@
-void handle_syscall();
+uint64_t handle_syscall();

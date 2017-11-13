@@ -1,32 +1,35 @@
 #include <syscalls.h>
-#include "keyboard.h"
-#include "time.h"
+#include <keyboard.h>
+#include <naiveConsole.h>
+#include <time.h>
 #include <videoDriver.h>
 
 static void* currentMemPtr = (void*)0x1000000;
 
 
 //Syscalls interrupt handler
-int handle_syscall(int id, int param1, int param2, int param3, int param4, int param5){
+uint64_t handle_syscall(int id, int param1, int param2, int param3, int param4, int param5){
 	void* aux = (void*)currentMemPtr;
 	switch (id){
 		//Malloc
 		case 0:
 			currentMemPtr += param1;
-			return aux;
+			return (uint64_t)aux;
 			break;
 
 		//Read
 		case 1:
-			if (getKeyboardBufferLength() > 0)
+			if (getKeyboardBufferLength() > 0){
 				getKeyboardBuffer((char*)param1);
-			else
+				return 1;
+			} else{
 				return 0;
+			}
 			break;
 
 		//Write
 		case 2:
-			ncPrint(param1);
+			ncPrint((char*)param1);
 			break;
 
 		//Clear screen
@@ -62,5 +65,5 @@ int handle_syscall(int id, int param1, int param2, int param3, int param4, int p
 			break;
 
 	}
-	return;
+	return 0;
 }

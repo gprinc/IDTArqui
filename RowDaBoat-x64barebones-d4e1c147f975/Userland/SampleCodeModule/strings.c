@@ -14,7 +14,7 @@ int strCmp(char* a, char* b){
 }
 
 //Checks if string a is cntained within string b
-int strContains(char* a, char* b){
+int strContains(const char* a, const char* b){
 	int i = 0, j = 0;
 	while (a[i] != b[j]){
 		j++;
@@ -41,8 +41,9 @@ int parseInt(char* string){
 
 	numDigits = negative?1:0;
 	while(string[numDigits] != 0){
-		if (string[numDigits] < '0' || string[numDigits] > '9')
+		if (string[numDigits] < '0' || string[numDigits] > '9'){
 			return 0;
+		}
 		numDigits++;
 	}
 	if (negative) numDigits--;
@@ -50,6 +51,7 @@ int parseInt(char* string){
 	for(int i = negative?numDigits:numDigits-1; i >= negative?1:0; i--){
 		result += (string[i] - '0') * pow(10, negative?numDigits-i:numDigits-1-i);
 	}
-	return result;
+	printNum(result);
+	return negative? (-1) * result : result;
 
 }
