@@ -1,9 +1,6 @@
-
 GLOBAL malloc
 GLOBAL getScreenWidth
 GLOBAL getScreenHeight
-
-
 
 malloc:
 	mov rsi, rdi

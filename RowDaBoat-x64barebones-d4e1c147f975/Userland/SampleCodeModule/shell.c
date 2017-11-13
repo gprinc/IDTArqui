@@ -37,7 +37,7 @@ void startShell(){
             } else if (!strCmp(input, "exit\n")){
                 _exit = 1;
             } else if (!strCmp(input, "zerodivision\n")){
-                triggerDivideByZero();
+                triggerDivideByZeroo();
             } else if (!strCmp(input, "overflow\n")){
                 triggerOverflow();
             } else if (!strCmp(input, "invalidopcode\n")){
@@ -79,7 +79,6 @@ void startShell(){
                     plotQuadraticFunction(0, a, b);
                 } else {
                     printf("The command takes 2 or 3 arguments.\n");
-                    break;
                 }
             } else if (!strCmp(input, "time\n")){
                 printTime();
@@ -90,28 +89,6 @@ void startShell(){
     }
     printf("Exiting shell. Goodbye!\n");
     return;
-}
-
-void printTime() {
-    int h = getSystemHours();
-    int m = getSystemMinutes();
-    int s = getSystemSeconds();
-    putChar(0);
-
-    char timeString[10] = {
-        h / 10 + '0',
-        h % 10 + '0',
-        ':',
-        m / 10 + '0',
-        m % 10 + '0',
-        ':',
-        s / 10 + '0',
-        s % 10 + '0',
-        '\n',
-        0
-    };
-    printf("Current time:\n");
-    printf(timeString);
 }
 
 void graphicCuadraticFunction(int a, int b, int c){

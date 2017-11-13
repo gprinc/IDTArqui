@@ -87,9 +87,11 @@ section .text
 	push r13
 	push r14
 	push r15
+	push rsp
 %endmacro
 
-%macro popStateWithourRAX 0
+%macro popStateWithoutRAX 0
+	pop rsp
 	pop r15
 	pop r14
 	pop r13
@@ -108,10 +110,11 @@ section .text
 
 
 int_syscall:
+	pushStateWithoutRAX
 
 	call handle_syscall
 
-
+	popStateWithoutRAX
 	iretq
 
 int_keyboard:
@@ -133,6 +136,7 @@ int_keyboard:
 exc_divide_by_0:
 
 	call handle_exc_divide_by_0
+
 
 	pop rbp
 	mov rbp, 0x400000

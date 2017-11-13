@@ -1,5 +1,6 @@
 void startShell();
 void startGraphicMode(const char* input, int length);
+void triggerDivideByZeroo();
 void printTime();
 void graphicCuadraticFunction();
 void plotQuadraticFunction(int a, int b, int c);

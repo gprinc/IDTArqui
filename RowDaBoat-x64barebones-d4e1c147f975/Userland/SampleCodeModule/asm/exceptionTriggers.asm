@@ -1,17 +1,11 @@
-GLOBAL triggerDivideByZero
-GLOBAL triggerOverflow
 GLOBAL triggerInvalidOpcode
+GLOBAL triggerDivideByZeroo
+GLOBAL triggerOverflow
+
 
 section .text
-triggerDivideByZero:
-	mov r14, 28
-	mov r8, 47
-	mov r12, 13
-	mov rax, 42
-	mov rcx, 69
-	mov rdx, 0
-	mov ebx, 0
-	div ebx
+triggerDivideByZeroo:
+	int 0h
 	ret
 
 triggerOverflow:

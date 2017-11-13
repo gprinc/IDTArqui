@@ -4,6 +4,9 @@ void* malloc(int bytes);
 int getScreenWidth();
 int getScreenHeight();
 
-void triggerDivideByZero();
+//Defined in exceptionTriggers.asm
+void triggerDivideByZeroo();
 void triggerOverflow();
 void triggerInvalidOpcode();
+
+void printTime();
