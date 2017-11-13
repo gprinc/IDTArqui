@@ -8,3 +8,7 @@ void putChar(char c);
 void printNum(const int n);
 char getChar();
 void paintPixel();
+
+int getSystemSeconds();
+int getSystemMinutes();
+int getSystemHours();

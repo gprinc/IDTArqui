@@ -41,13 +41,13 @@ uint64_t handle_syscall(int id, int param1, int param2, int param3, int param4, 
 		case 4:
 			switch(param1){
 				case 0:
-					return getSeconds();
+					return (uint64_t)getSeconds();
 					break;
 				case 1:
-					return getMinutes();
+					return (uint64_t)getMinutes();
 					break;
 				case 2:
-					return getHours();
+					return (uint64_t)getHours();
 					break;
 			}
 			break;

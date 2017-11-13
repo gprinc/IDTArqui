@@ -96,6 +96,7 @@ void printTime() {
     int h = getSystemHours();
     int m = getSystemMinutes();
     int s = getSystemSeconds();
+    putChar(0);
 
     char timeString[10] = {
         h / 10 + '0',
