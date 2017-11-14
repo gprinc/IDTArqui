@@ -15,7 +15,7 @@ void displayHelp(){
     //printf("That's it.\n");
 }
 
-void startShell(){
+int startShell(){
     printf("\nPlease enter a command. For a list of commands, enter \"help\".\n");
     int _exit = 0;
     int insideGraphicMode = 0;
@@ -41,7 +41,7 @@ void startShell(){
             } else if (!strCmp(input, "overflow\n")){
                 triggerOverflow();
             } else if (!strCmp(input, "invalidopcode\n")){
-                triggerInvalidOpcode();
+                // triggerInvalidOpcode();
             } else if (strContains("graphicmode", input) && input[length-1] == '\n'){
                 int a, b, c;
                 char numBuffer[100];
@@ -68,7 +68,7 @@ void startShell(){
                                     letterIndex++;
                                     break;
                             }
-                        }   
+                        }
                     }
                 }
                 clearScreen();
@@ -88,7 +88,7 @@ void startShell(){
         }
     }
     printf("Exiting shell. Goodbye!\n");
-    return;
+    return 1;
 }
 
 void graphicCuadraticFunction(int a, int b, int c){
@@ -127,6 +127,10 @@ void plotQuadraticFunction(int a, int b, int c){
         y = a * x * x + b*x + c;
         worldToScreenCoordinates(&x, &y, unitWidth, unitHeight);
         paintPixel((int)x, (int)y, 255, 0, 0);
+        paintPixel((int)x + 1, (int)y, 255, 0, 0);
+        paintPixel((int)x - 1, (int)y, 255, 0, 0);
+        paintPixel((int)x, (int)y + 1, 255, 0, 0);
+        paintPixel((int)x, (int)y - 1, 255, 0, 0);
     }
 }
 

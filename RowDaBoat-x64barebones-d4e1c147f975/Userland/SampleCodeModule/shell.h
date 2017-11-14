@@ -1,4 +1,4 @@
-void startShell();
+int startShell();
 void startGraphicMode(const char* input, int length);
 void triggerDivideByZeroo();
 void printTime();
